@@ -2,6 +2,19 @@
 <html>
   <head>
     <title><%= title %></title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
     <link rel='stylesheet' href='/stylesheets/style.css' />
   </head>
   <body>
+    <header>
+        <span class="burger-menu"><i class="fas fa-bars"></i></span>
+        <span class="logo">Dance Events</span>
+    </header>
+    <nav>
+      <span class="logo"><a href="/">💃</a></span>
+      <a class="button center" href="/events"><i class="fas fa-calendar-week"></i></a>
+      <a class="button center" href="/events/new"><i class="far fa-calendar-plus"></i></a>
+      <button class="button" type="button" name="button"><i class="fas fa-info"></i></button>
+      <a class="button center login" href="/login"><i class="fas fa-sign-in-alt"></i></a>
+    </nav>
+    <div class="container">

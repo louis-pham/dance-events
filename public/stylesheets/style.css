@@ -1,8 +1,119 @@
 body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  box-sizing: border-box;
+  margin: 0;
+  font-family: sans-serif;
+  font-size: 14px;
+  --nav-width: 55px;
+  --nav-padding: 20px;
 }
 
-a {
-  color: #00B7FF;
+header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 40px;
+  padding: 0 10px;
+  background: #2d1c1c;
+  color: white;
+  display: flex;
+  align-items: center;
+  font-size: 2em;
+  border-bottom-right-radius: 5px;
+}
+
+.burger-menu {
+  cursor: pointer;
+}
+
+.logo {
+  display: block;
+  margin-left: 20px;
+}
+
+nav {
+  position: fixed;
+  display: none;
+  flex-direction: column;
+  background: #150d0d;
+  width: var(--nav-width);
+  height: calc(100vh - var(--nav-padding)*2);
+  padding: var(--nav-padding) 0;
+  color: white;
+  align-items: center;
+}
+
+nav .logo {
+  margin: 0 0 20px 0;
+  font-size: 1.6em;
+}
+
+nav .logo a {
+  text-decoration: none;
+}
+
+nav .button {
+  height: 40px;
+  width: 40px;
+  text-align: center;
+  color: white;
+  background: #312525;
+  border-radius: 5px;
+  border-style: hidden;
+  margin-top: 5px;
+  cursor: pointer;
+  font-size: 1.6em;
+  text-decoration: none;
+}
+
+a.login {
+  margin-top: auto;
+}
+
+section {
+  padding: 50px;
+}
+
+.center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.landing {
+  background: black;
+  color: white;
+  min-height: 350px;
+}
+
+@media screen and (min-width: 700px) {
+  .container {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    grid-template-columns: auto;
+    grid-template-areas:
+    "landing"
+    "featured"
+    "footer";
+  }
+
+  header {
+    display: none;
+  }
+
+  nav {
+    display: flex;
+  }
+
+  section {
+    padding: 50px 50px 50px calc(50px + var(--nav-width));
+  }
+
+  .landing {
+    grid-area: landing;
+  }
+
+  .featured {
+    grid-area: featured;
+  }
 }
