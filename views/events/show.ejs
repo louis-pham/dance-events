@@ -1,0 +1,19 @@
+<%- include ../partials/header.ejs %>
+  <section>
+    <h1 id="event-name"></h1>
+    <img id="event-image">
+    <h2>Date & Time</h2>
+    <span id="event-datetime"></span>
+    <h2>Price</h2>
+    <span id="event-price"></span>
+    <h2>Description</h2>
+    <p id="event-description"></p>
+    <h2>Entry List</h2>
+    <div id="entry-list"></div>
+    <button class="btn" type="button" name="button" disabled>Sign Up</button>
+    <a id="event-edit" class="btn btn-edit" href="">Edit Event Details</a>
+    <form class="" action="/api/events/DELEEETE" method="POST">
+      <button class="btn btn-delete" type="button" name="button">DELETE EVENT</button>
+    </form>
+  </section>
+<%- include ../partials/footer.ejs %>

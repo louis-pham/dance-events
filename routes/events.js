@@ -4,9 +4,10 @@ const eventsCtrl = require("../controllers/events");
 
 /* GET home page. */
 router.get('/', eventsCtrl.index);
-router.get('/:id', eventsCtrl.show);
-router.get('/new', eventsCtrl.create);
+router.get('/new', eventsCtrl.add);
+router.get('/show', eventsCtrl.show);
+// router.get('/edit', eventsCtrl.edit);
 
-router.post("/", eventsCtrl.add);
+router.post("/", eventsCtrl.create);
 
 module.exports = router;

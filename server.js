@@ -3,9 +3,13 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+let methodOverride = require('method-override');
 
 var indexRouter = require('./routes/index');
 const eventsRouter = require("./routes/events");
+const apiRouter = require("./routes/api/index");
+
+require("./config/database");
 
 var app = express();
 
@@ -21,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use("/events", eventsRouter);
+app.use("/api", apiRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

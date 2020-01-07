@@ -1,4 +1,4 @@
-// const Event = require("../models/events");
+const Event = require("../models/event");
 
 module.exports = {
   index,
@@ -8,20 +8,22 @@ module.exports = {
 };
 
 function index(req, res) {
-  res.render('events/index', { title: 'All Events', loadJsFile: true });
+  res.render('events/index', { title: 'All Events', loadJsFile: "/javascripts/events.js" });
 }
 
 function show(req, res) {
-  res.render('events/show', { title: 'Event ABC' });
+  res.render('events/show', { title: 'Show Event', loadJsFile: "/javascripts/show.js" });
 }
 
 function addEvent(req, res) {
-res.render("events/new", { title: "Add Event" } );
+  res.render("events/new", { title: "Add Event" } );
 }
 
 function create(req, res) {
+  // console.log(req.body);
   const event = new Event(req.body);
-  event.save(function(err, evt) {
+  console.log(event);
+  event.save(function(err, doc) {
     if (err) return res.render("error");
     res.redirect("/events");
   });
