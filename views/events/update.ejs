@@ -1,7 +1,7 @@
 <%- include ../partials/header.ejs %>
   <section>
-    <h1>Add Event</h1>
-    <form class="" action="/api/events" method="post">
+    <h1>Edit Event</h1>
+    <form class="" action="/api/events/<%= id %>" method="post">
       <label for="name">Name</label>
       <input id="event-name" type="text" name="name" value="">
       <label for="time">Date/time</label>
@@ -14,7 +14,7 @@
       <textarea id="event-description" name="description" rows="8"></textarea>
       <!-- <label for="image">Event Image</label>
       <input id="event-image" type="file" name="image" value=""> -->
-      <button type="submit" name="button">Add Event</button>
+      <button type="submit" name="button">Update Event</button>
     </form>
   </section>
 <%- include ../partials/footer.ejs %>

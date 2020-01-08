@@ -1,13 +1,12 @@
 (function() {
   let eventNameElem = document.querySelector("#event-name");
-  let eventImageElem = document.querySelector("#event-image");
-  let eventDateTimeElem = document.querySelector("#event-datetime");
+  // let eventImageElem = document.querySelector("#event-image");
+  let eventDateTimeElem = document.querySelector("#event-time");
   let eventLocationElem = document.querySelector("#event-location");
   let eventPriceElem = document.querySelector("#event-price");
   let eventDescriptionElem = document.querySelector("#event-description");
-  // let eventEditElem = document.querySelector("#event-edit");
-  let entryListElem = document.querySelector("#entry-list");
   let formElem = document.querySelector("form");
+
   const urlParams = new URLSearchParams(window.location.search);
 
   const getUrl = `/api/events/${urlParams.get("id")}`;
@@ -17,12 +16,12 @@
     // handle success
     console.log(response);
     const event = response.data;
-    eventNameElem.innerText = event.name;
-    eventImageElem.src = event.image || "/images/tribe-related-events-placeholder.png";
-    eventDateTimeElem.innerText = moment(event.time).format("LLL");
-    eventLocationElem.innerText = event.location;
-    eventPriceElem.innerText = "$" + event.price.toFixed(2);
-    eventDescriptionElem.innerText = event.description;
+    eventNameElem.value = event.name;
+    // eventImageElem.src = event.image || "/images/tribe-related-events-placeholder.png";
+    eventDateTimeElem.value = moment(event.time).format("YYYY-MM-DDTHH:mm:ss");
+    eventLocationElem.value = event.location;
+    eventPriceElem.value = event.price;
+    eventDescriptionElem.value = event.description;
   })
   .catch(function(error) {
     // handle error
@@ -31,10 +30,16 @@
 
   formElem.addEventListener("submit", function(e) {
     e.preventDefault();
-    axios.delete(formElem.action)
+    axios.put(formElem.action, {
+      name: eventNameElem.value,
+      time: eventDateTimeElem.value,
+      location: eventLocationElem.value,
+      price: eventPriceElem.value,
+      description: eventDescriptionElem.value,
+    })
     .then(function(response) {
       console.log(response);
-      window.location.replace("/events");
+      window.location.replace(`/events/show?id=${urlParams.get("id")}`);
     })
     .catch(function(error) {
       console.log(error);

@@ -37,9 +37,14 @@ function show(req, res) {
 }
 
 function update(req, res) {
-
+  //TODO: mongoose validators arent run on update, so check the input values manually
+  Event.findByIdAndUpdate(req.params.id, req.body, { new: true }).then( event => {
+      res.status(200).json(event);
+    });
 }
 
 function deleteEvent(req, res) {
-
+  Event.findByIdAndDelete(req.params.id).then( result => {
+    res.json(result);
+  });
 }
