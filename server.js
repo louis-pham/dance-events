@@ -10,6 +10,7 @@ const passport = require("passport");
 
 var indexRouter = require('./routes/index');
 const eventsRouter = require("./routes/events");
+const usersRouter = require("./routes/users");
 const apiRouter = require("./routes/api/index");
 
 require("./config/database");
@@ -36,6 +37,7 @@ app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use("/events", eventsRouter);
+app.use("/users", usersRouter);
 app.use("/api", apiRouter);
 
 // catch 404 and forward to error handler

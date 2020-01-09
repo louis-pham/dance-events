@@ -16,9 +16,9 @@
       let momentDate = moment(event.time);
       eventItem.innerHTML = `
         <div class="event-details">
-          <h2 class="event--title">${event.name}</h2>
-          <h3 class="event--datetime">${momentDate.format(" 	lll")}</h3>
-          <h3 class="event--price">$${event.price.toFixed(2)}</h3>
+          <h2 class="event__title">${event.name}</h2>
+          <h3 class="event__datetime">${momentDate.format(" 	lll")}</h3>
+          <h3 class="event__price">$${event.price.toFixed(2)}</h3>
         </div>
       `;
       eventLink.appendChild(eventItem);

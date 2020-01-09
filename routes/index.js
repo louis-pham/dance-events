@@ -4,15 +4,15 @@ const passport = require("passport");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Dance Events', user: req.user });
+  res.render('index', { title: 'Dance Events', loggedInUser: req.user });
 });
 
 router.get("/login", function(req, res) {
-  res.render("login", { title: "Login", user: req.user });
+  res.render("login", { title: "Login", loggedInUser: req.user });
 });
 
 router.get("/profile", function(req, res) {
-  res.render("profile", { title: "My Profile", user: req.user })
+  res.render("profile", { title: "My Profile", loggedInUser: req.user })
 });
 
 // Google OAuth login route

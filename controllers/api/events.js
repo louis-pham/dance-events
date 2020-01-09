@@ -36,7 +36,7 @@ function create(req, res) {//
 }
 
 function show(req, res) {
-  Event.findById(req.params.id)
+  Event.findById(req.params.id).populate("creator")
   .then(event => {
     if (event) return res.status(200).json(event);
     res.status(404).json({ error: "Event not found" });

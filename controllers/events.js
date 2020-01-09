@@ -12,7 +12,7 @@ function index(req, res) {
   res.render('events/index', {
     title: 'All Events',
     loadJsFile: "/javascripts/events.js" ,
-    user: req.user,
+    loggedInUser: req.user,
   });
 }
 
@@ -20,7 +20,7 @@ function show(req, res) {
   res.render('events/show', {
     title: 'Show Event',
     loadJsFile: "/javascripts/show.js",
-    user: req.user,
+    loggedInUser: req.user,
     id: req.query.id
   });
 }
@@ -29,7 +29,7 @@ function addEvent(req, res) {
   res.render("events/new", {
     title: "Add Event",
     loadJsFile: "/javascripts/new.js",
-    user: req.user,
+    loggedInUser: req.user,
   });
 }
 
@@ -37,7 +37,7 @@ function update(req, res) {
   res.render("events/update", {
     title: "Update Event",
     loadJsFile: "/javascripts/update.js",
-    user: req.user,
+    loggedInUser: req.user,
     id: req.query.id
   });
 }

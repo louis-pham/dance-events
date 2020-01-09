@@ -1,0 +1,43 @@
+<%- include ../partials/header.ejs %>
+  <section class="users">
+    <h1>User Information</h1>
+    <h2>User Name</h2>
+    <span id="user-name"><%= user.name %></span>
+    <h2>User Handle</h2>
+    <span id="user-handle"><%= user.handle || "Not yet chosen" %></span>
+    <h2>Events Signed Up</h2>
+    <span id="user-events-signed-up"></span>
+    <% if (user.eventsSignedUp.length === 0) { %>
+      <span>None</span>
+    <% }; %>
+    <div class="events-container">
+      <% user.eventsSignedUp.forEach(event => { %>
+        <a class="event-link" href="/events/show?id=<%= event._id %>">
+          <div class="event" style="background: url(<%= event.image || "/images/tribe-related-events-placeholder.png" %>) center calc(50% - 100px) no-repeat;">
+          <div class="event-details">
+            <h2 class="event__title"><%= event.name %></h2>
+            <h3 class="event__datetime"><%= event.time %></h3>
+            <h3 class="event__price">$<%= event.price.toFixed(2) %></h3>
+          </div>
+        </div></a>
+      <% }); %>
+    </div>
+    <h2>Events Created</h2>
+    <% if (user.eventsCreated.length === 0) { %>
+      <span>None</span>
+    <% }; %>
+    <div class="events-container">
+      <% user.eventsCreated.forEach(event => { %>
+        <a class="event-link" href="/events/show?id=<%= event._id %>">
+          <div class="event" style="background: url(<%= event.image || "/images/tribe-related-events-placeholder.png" %>) center calc(50% - 100px) no-repeat;">
+          <div class="event-details">
+            <h2 class="event__title"><%= event.name %></h2>
+            <h3 class="event__datetime"><%= event.time %></h3>
+            <h3 class="event__price">$<%= event.price.toFixed(2) %></h3>
+          </div>
+        </div></a>
+      <% }); %>
+    </div>
+  </section>
+
+<%- include ../partials/footer.ejs %>

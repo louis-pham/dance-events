@@ -1,5 +1,6 @@
 (function() {
   let eventNameElem = document.querySelector("#event-name");
+  let eventCreatorElem = document.querySelector("#event-creator");
   let eventImageElem = document.querySelector("#event-image");
   let eventDateTimeElem = document.querySelector("#event-datetime");
   let eventLocationElem = document.querySelector("#event-location");
@@ -18,6 +19,8 @@
     console.log(response);
     const event = response.data;
     eventNameElem.innerText = event.name;
+    eventCreatorElem.innerText = event.creator.name;
+    eventCreatorElem.href = `/users/${event.creator._id}`;
     eventImageElem.src = event.image || "/images/tribe-related-events-placeholder.png";
     eventDateTimeElem.innerText = moment(event.time).format("LLL");
     eventLocationElem.innerText = event.location;
