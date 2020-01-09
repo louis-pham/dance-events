@@ -1,4 +1,5 @@
 const Event = require("../../models/event");
+const User = require("../../models/user");
 
 module.exports = {
   index,
@@ -36,7 +37,7 @@ function create(req, res) {//
 }
 
 function show(req, res) {
-  Event.findById(req.params.id).populate("creator")
+  Event.findById(req.params.id).populate("creator").populate("entries")
   .then(event => {
     if (event) return res.status(200).json(event);
     res.status(404).json({ error: "Event not found" });
@@ -49,15 +50,22 @@ function show(req, res) {
 function update(req, res) {
   //TODO: mongoose validators arent run on update, so check the input values manually
   Event.findByIdAndUpdate(req.params.id, req.body, { new: true }).then( event => {
-      res.status(200).json(event);
-    });
+    res.status(200).json(event);
+  });
 }
 
 function deleteEvent(req, res) {
-  //TODO: validate that it is the creator deleting the event
+  if (!req.user.eventsCreated.includes(req.params.id)) {
+    return res.status(401).json({ error: "You cannot delete this event." });
+  }
   req.user.eventsCreated.pull(req.params.id);
-  req.user.save()
-  .then(user => {
+  req.user.save().then(() => {
+    // delete event from each user that signed up for it
+    User.updateMany({ eventsSignedUp: req.params.id },
+      { $pull: {eventsSignedUp: req.params.id} }
+    ).exec();
+  })
+  .then(() => {
     return Event.findByIdAndDelete(req.params.id);
   })
   .then( result => {

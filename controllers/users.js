@@ -4,7 +4,8 @@ const User = require("../models/user");
 module.exports = {
   index,
   show,
-  update
+  update,
+  addToEvent
 };
 
 function index(req, res) {
@@ -27,4 +28,28 @@ function show(req, res) {
 
 function update(req, res) {
 
+}
+
+function addToEvent(req, res) {
+  console.log(req.params.id);
+  console.log(req.user.eventsSignedUp);
+  if (!req.user.eventsSignedUp.includes(req.params.id)) {
+    Event.findById(req.params.id, function(err, event) {
+      if (!event.entries.includes(req.user._id)) {
+        event.entries.push(req.user._id);
+        event.save();
+      }
+    }).then(event => {
+      console.log("add event to user...");
+      req.user.eventsSignedUp.push(req.params.id);
+      req.user.save();
+    }).then(user => {
+      res.redirect(`/events/show?id=${req.params.id}`);
+    }).catch(error => {
+      console.log("caught error");
+      res.render(`error`);
+    });
+  } else {
+    res.status(500).json({ error: "user has already signed up for this event!" });
+  }
 }

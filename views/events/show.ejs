@@ -13,11 +13,16 @@
     <h2>Description</h2>
     <p id="event-description"></p>
     <h2>Entry List</h2>
-    <div id="entry-list"></div>
-    <button class="btn" type="button" name="button" disabled>Sign Up</button>
-    <a id="event-edit" class="btn btn-edit" href="/events/update?id=<%= id %>">Update Event Details</a>
-    <form class="" action="/api/events/<%= id %>" method="POST">
-      <button class="btn btn-delete" type="submit" name="button">DELETE EVENT</button>
+    <ol id="entry-list"></ol>
+
+    <form id="sign-up" class="" action="/events/<%= id %>/entries" method="POST">
+      <button class="btn" type="submit">Sign Up</button>
     </form>
+    <% if (loggedInUser && loggedInUser.eventsCreated.includes(id)) {%>
+      <a id="event-edit" class="btn btn-edit" href="/events/update?id=<%= id %>">Update Event Details</a>
+      <form id="delete-event" class="" action="/api/events/<%= id %>" method="POST">
+        <button class="btn btn-delete" type="submit" name="button">DELETE EVENT</button>
+      </form>
+    <% } %>
   </section>
 <%- include ../partials/footer.ejs %>

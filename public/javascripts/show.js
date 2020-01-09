@@ -8,7 +8,7 @@
   let eventDescriptionElem = document.querySelector("#event-description");
   // let eventEditElem = document.querySelector("#event-edit");
   let entryListElem = document.querySelector("#entry-list");
-  let formElem = document.querySelector("form");
+  let deleteFormElem = document.querySelector("form#delete-event");
   const urlParams = new URLSearchParams(window.location.search);
 
   const getUrl = `/api/events/${urlParams.get("id")}`;
@@ -26,15 +26,23 @@
     eventLocationElem.innerText = event.location;
     eventPriceElem.innerText = "$" + event.price.toFixed(2);
     eventDescriptionElem.innerText = event.description;
+
+    event.entries.forEach(user => {
+      const signedUpUserElem = document.createElement("li");
+      signedUpUserElem.innerHTML = `
+        <a href="/users/${user._id}">${user.handle || user.name}</a>
+      `;
+      entryListElem.appendChild(signedUpUserElem);
+    });
   })
   .catch(function(error) {
     // handle error
     console.log(error);
   });
 
-  formElem.addEventListener("submit", function(e) {
+  deleteFormElem.addEventListener("submit", function(e) {
     e.preventDefault();
-    axios.delete(formElem.action)
+    axios.delete(deleteFormElem.action)
     .then(function(response) {
       console.log(response);
       window.location.replace("/events");
