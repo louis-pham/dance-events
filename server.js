@@ -5,13 +5,15 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-let methodOverride = require('method-override');
+const session = require("express-session");
+const passport = require("passport");
 
 var indexRouter = require('./routes/index');
 const eventsRouter = require("./routes/events");
 const apiRouter = require("./routes/api/index");
 
 require("./config/database");
+require('./config/passport');
 
 var app = express();
 
@@ -24,6 +26,13 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(session({
+  secret: process.env.SESSION_SECRET,
+  resave: false,
+  saveUninitialized: true
+}));
+app.use(passport.initialize());
+app.use(passport.session());
 
 app.use('/', indexRouter);
 app.use("/events", eventsRouter);

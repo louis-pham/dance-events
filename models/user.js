@@ -1,3 +1,5 @@
+const mongoose = require('mongoose');
+
 const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
@@ -8,6 +10,7 @@ const userSchema = new Schema({
   handle: {
     type: String
   },
+  googleId: String,
   eventsSignedUp: [{ type: Schema.Types.ObjectId, ref: "Event"}],
   eventsCreated: [{ type: Schema.Types.ObjectId, ref: "Event"}]
 },{

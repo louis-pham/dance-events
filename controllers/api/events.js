@@ -15,13 +15,23 @@ function index(req, res) {
   });
 }
 
-function create(req, res) {
-  console.log(req.body);
+function create(req, res) {//
+  //TODO: validate that user is logged in
+  req.body.creator = req.user._id;
   Event.create(req.body)
   .then(event => {
     res.status(201).json(event);
-  }).catch(err => {
+    return event;
+  })
+  .catch(err => {
     res.status(500).json({ error: "Something went wrong" });
+  })
+  .then(event => {
+    req.user.eventsCreated.push(event._id);
+    req.user.save();
+  })
+  .catch(err => {
+    console.log(err);
   });
 }
 
@@ -44,7 +54,13 @@ function update(req, res) {
 }
 
 function deleteEvent(req, res) {
-  Event.findByIdAndDelete(req.params.id).then( result => {
+  //TODO: validate that it is the creator deleting the event
+  req.user.eventsCreated.pull(req.params.id);
+  req.user.save()
+  .then(user => {
+    return Event.findByIdAndDelete(req.params.id);
+  })
+  .then( result => {
     res.json(result);
   });
 }

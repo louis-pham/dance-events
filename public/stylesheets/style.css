@@ -92,7 +92,7 @@ nav .button {
   text-decoration: none;
 }
 
-a.login {
+a.login, a.logout {
   margin-top: auto;
 }
 
