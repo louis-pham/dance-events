@@ -5,7 +5,7 @@ const middleware = require("../middleware/middleware.js");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Dance Events', loggedInUser: req.user });
+  res.render('index', { title: 'Next on Deck', loadCssFile: "/stylesheets/index.css", loadJsFile: "/javascripts/index.js", loggedInUser: req.user });
 });
 
 router.get("/login", function(req, res) {

@@ -26,6 +26,10 @@ const eventSchema = new Schema({
   image: {
     type: String
   },
+  isFeatured: {
+    type: Boolean,
+    default: false
+  },
   creator: {
     type: Schema.Types.ObjectId,
     ref: "User"

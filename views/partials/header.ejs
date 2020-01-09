@@ -3,12 +3,16 @@
   <head>
     <title><%= title %></title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css">
-    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <link href="https://fonts.googleapis.com/css?family=Comfortaa:400,700|Montserrat:300,400&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='/stylesheets/main.css' />
+    <% if (typeof loadCssFile !== "undefined") { %>
+      <link rel="stylesheet" href="<%= loadCssFile %>">
+    <% } %>
   </head>
   <body>
     <header>
         <span id="burger-menu" class="burger-menu"><i class="fas fa-bars"></i></span>
-        <span class="logo">Dance Events</span>
+        <span class="logo">NOD.io</span>
     </header>
     <nav>
       <span class="logo"><a href="/">💃</a></span>

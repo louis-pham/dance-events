@@ -11,7 +11,7 @@ module.exports = {
 function index(req, res) {
   res.render('events/index', {
     title: 'All Events',
-    loadJsFile: "/javascripts/events.js" ,
+    loadJsFile: "/javascripts/events.js",
     loggedInUser: req.user,
   });
 }

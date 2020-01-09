@@ -3,6 +3,8 @@ const User = require("../../models/user");
 
 module.exports = {
   index,
+  featured,
+  some,
   create,
   show,
   update,
@@ -11,6 +13,20 @@ module.exports = {
 
 function index(req, res) {
   Event.find({})
+  .then(events => {
+    res.status(200).json(events);
+  });
+}
+
+function featured(req, res) {
+  Event.find({ isFeatured: true })
+  .then(events => {
+    res.status(200).json(events);
+  });
+}
+
+function some(req, res) {
+  Event.find().limit(5)
   .then(events => {
     res.status(200).json(events);
   });
