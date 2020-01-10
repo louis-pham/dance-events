@@ -1,6 +1,6 @@
 (function() {
   let eventNameElem = document.querySelector("#event-name");
-  // let eventImageElem = document.querySelector("#event-image");
+  let eventImageElem = document.querySelector("#event-image");
   let eventDateTimeElem = document.querySelector("#event-time");
   let eventLocationElem = document.querySelector("#event-location");
   let eventPriceElem = document.querySelector("#event-price");
@@ -17,7 +17,7 @@
     console.log(response);
     const event = response.data;
     eventNameElem.value = event.name;
-    // eventImageElem.src = event.image || "/images/tribe-related-events-placeholder.png";
+    eventImageElem.value = event.image || "";
     eventDateTimeElem.value = moment(event.time).format("YYYY-MM-DDTHH:mm:ss");
     eventLocationElem.value = event.location;
     eventPriceElem.value = event.price;
@@ -36,6 +36,7 @@
       location: eventLocationElem.value,
       price: eventPriceElem.value,
       description: eventDescriptionElem.value,
+      image: eventImageElem.value
     })
     .then(function(response) {
       console.log(response);

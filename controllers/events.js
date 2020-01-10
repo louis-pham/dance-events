@@ -37,6 +37,7 @@ function addEvent(req, res) {
 function update(req, res) {
   res.render("events/update", {
     title: "Update Event",
+    loadCssFile: "/stylesheets/update.css",
     loadJsFile: "/javascripts/update.js",
     loggedInUser: req.user,
     id: req.query.id
