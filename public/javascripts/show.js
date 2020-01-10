@@ -6,17 +6,13 @@
   let eventLocationElem = document.querySelector("#event-location");
   let eventPriceElem = document.querySelector("#event-price");
   let eventDescriptionElem = document.querySelector("#event-description");
-  // let eventEditElem = document.querySelector("#event-edit");
   let entryListElem = document.querySelector("#entry-list");
   let deleteFormElem = document.querySelector("form#delete-event");
   const urlParams = new URLSearchParams(window.location.search);
-
   const getUrl = `/api/events/${urlParams.get("id")}`;
 
   axios.get(getUrl)
   .then(function(response) {
-    // handle success
-    console.log(response);
     const event = response.data;
     eventNameElem.innerText = event.name;
     if (event.creator) {
@@ -40,7 +36,6 @@
     });
   })
   .catch(function(error) {
-    // handle error
     console.log(error);
   });
 
@@ -48,7 +43,6 @@
     e.preventDefault();
     axios.delete(deleteFormElem.action)
     .then(function(response) {
-      console.log(response);
       window.location.replace("/events");
     })
     .catch(function(error) {

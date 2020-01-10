@@ -4,7 +4,6 @@ module.exports = {
   show,
   add: addEvent,
   update
-  // create
 };
 
 function index(req, res) {
@@ -43,13 +42,3 @@ function update(req, res) {
     id: req.query.id
   });
 }
-
-// function create(req, res) {
-//   // console.log(req.body);
-//   const event = new Event(req.body);
-//   console.log(event);
-//   event.save(function(err, doc) {
-//     if (err) return res.render("error");
-//     res.redirect("/events");
-//   });
-// }

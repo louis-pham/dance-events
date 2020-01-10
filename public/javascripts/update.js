@@ -8,13 +8,10 @@
   let formElem = document.querySelector("form");
 
   const urlParams = new URLSearchParams(window.location.search);
-
   const getUrl = `/api/events/${urlParams.get("id")}`;
 
   axios.get(getUrl)
   .then(function(response) {
-    // handle success
-    console.log(response);
     const event = response.data;
     eventNameElem.value = event.name;
     eventImageElem.value = event.image || "";
@@ -39,7 +36,6 @@
       image: eventImageElem.value
     })
     .then(function(response) {
-      console.log(response);
       window.location.replace(`/events/show?id=${urlParams.get("id")}`);
     })
     .catch(function(error) {

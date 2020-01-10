@@ -37,7 +37,6 @@ function some(req, res) {
 }
 
 function create(req, res) {//
-  //TODO: validate that user is logged in
   req.body.creator = req.user._id;
   console.log(req.body);
   Event.create(req.body)
@@ -69,7 +68,7 @@ function show(req, res) {
 }
 
 function update(req, res) {
-  //TODO: mongoose validators arent run on update, so check the input values manually
+  // mongoose validators arent run on update, so may need to check inputs here
   Event.findByIdAndUpdate(req.params.id, req.body, { new: true }).then( event => {
     res.status(200).json(event);
   });

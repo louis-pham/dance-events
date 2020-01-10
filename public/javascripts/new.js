@@ -3,7 +3,6 @@
 
   formElem.addEventListener("submit", function(e) {
     e.preventDefault();
-    console.log(e);
     axios.post(formElem.action, {
       name: formElem.querySelector("#event-name").value,
       time: formElem.querySelector("#event-time").value,
@@ -13,7 +12,6 @@
       image: formElem.querySelector("#event-image").value,
     })
     .then(function(response) {
-      console.log(response);
       window.location.replace("/events");
     })
     .catch(function(error) {
