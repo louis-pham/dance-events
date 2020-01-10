@@ -17,7 +17,17 @@ You can check out the live Heroku app [here](https://dance-events.herokuapp.com)
 ![Add Event page](https://i.imgur.com/jdVUZYD.png)
 
 ## Technologies Used
-HTML, CSS, JavaScript, Node.js, Express, EJS, MongoDB, Mongoose, axios, moment.js, Passport
+- HTML
+- CSS
+- JavaScript
+- Node.js
+- Express
+- EJS
+- MongoDB
+- Mongoose
+- axios
+- moment.js
+- Passport
 
 ## Getting Started
 After cloning the repository, run `npm install` to download and install dependencies.
