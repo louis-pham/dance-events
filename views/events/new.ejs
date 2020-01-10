@@ -2,13 +2,13 @@
   <section class="add-event">
     <h1>Add Event</h1>
     <form class="" action="/api/events" method="post">
-      <label for="name">Name</label>
+      <label for="name">Name <span class="required">*</span></label>
       <input id="event-name" type="text" name="name" value="">
-      <label for="time">Date/time</label>
+      <label for="time">Date/time <span class="required">*</span></label>
       <input id="event-time" type="datetime-local" name="time" value="">
-      <label for="location">Location</label>
+      <label for="location">Location <span class="required">*</span></label>
       <textarea id="event-location" name="location" rows=3></textarea>
-      <label for="price">Price</label>
+      <label for="price">Price <small>(numbers only - no commas!)</small> <span class="required">*</span></label>
       <input id="event-price" type="text" name="price" value="">
       <label for="description">Description</label>
       <textarea id="event-description" name="description" rows="8"></textarea>

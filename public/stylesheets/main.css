@@ -30,6 +30,11 @@ form {
   display: inline-block;
 }
 
+.required {
+  color: red;
+  font-weight: bold;
+}
+
 .container {
   min-height: 99vh;
 }
