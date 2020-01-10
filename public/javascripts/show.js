@@ -19,8 +19,12 @@
     console.log(response);
     const event = response.data;
     eventNameElem.innerText = event.name;
-    eventCreatorElem.innerText = event.creator.name;
-    eventCreatorElem.href = `/users/${event.creator._id}`;
+    if (event.creator) {
+      eventCreatorElem.innerText = event.creator.handle || event.creator.name;
+      eventCreatorElem.href = `/users/${event.creator._id}`;
+    } else {
+      eventCreatorElem.innerText = "Not found";
+    }
     eventImageElem.src = event.image || "/images/tribe-related-events-placeholder.png";
     eventDateTimeElem.innerText = moment(event.time).format("LLL");
     eventLocationElem.innerText = event.location;

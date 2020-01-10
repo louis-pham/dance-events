@@ -1,3 +1,11 @@
+const burgerMenuElem = document.querySelector("#burger-menu");
+const navElem = document.querySelector("nav");
+
+burgerMenuElem.addEventListener("click", function(e) {
+  burgerMenuElem.classList.toggle("nav--open");
+  navElem.classList.toggle("nav--open");
+});
+
 function buildEventCard(event) {
   let eventLink = document.createElement("a");
   eventLink.classList.add("event-link");

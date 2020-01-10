@@ -35,14 +35,6 @@ const eventSchema = new Schema({
     ref: "User"
   },
   entries: [{ type: Schema.Types.ObjectId, ref: "User" }],
-  event_type: [{
-    type: String,
-    enum: ["battle", "workshop", "party", "other"]
-  }],
-  styles: [{
-    type: String,
-    enum: ["breaking", "popping", "locking", "krumping", "hustle", "choreography", "all styles", "other"]
-  }]
 }, {
   timestamps: true
 });

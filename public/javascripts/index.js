@@ -1,6 +1,7 @@
 (function() {
   let featuredEventsElem = document.querySelector("#featured");
-  let someEventsElem = document.querySelector("#some-events");
+  let seeMoreElem = document.querySelector("#see-more");
+  let someEventsElem = seeMoreElem.parentNode;
 
   axios.get("/api/events/featured")
   .then(function (response) {
@@ -25,7 +26,7 @@
     console.log(response);
     response.data.forEach(event => {
       let eventLink = buildEventCard(event);
-      someEventsElem.append(eventLink);
+      someEventsElem.insertBefore(eventLink, seeMoreElem);
     });
   })
   .catch(function (error) {

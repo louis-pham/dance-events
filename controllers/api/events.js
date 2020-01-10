@@ -13,6 +13,7 @@ module.exports = {
 
 function index(req, res) {
   Event.find({})
+  .sort({ time: "ascending" })
   .then(events => {
     res.status(200).json(events);
   });
@@ -20,13 +21,16 @@ function index(req, res) {
 
 function featured(req, res) {
   Event.find({ isFeatured: true })
+  .sort({ time: "ascending" })
   .then(events => {
     res.status(200).json(events);
   });
 }
 
 function some(req, res) {
-  Event.find().limit(5)
+  Event.find()
+  .sort({ time: "ascending" })
+  .limit(5)
   .then(events => {
     res.status(200).json(events);
   });
@@ -35,6 +39,7 @@ function some(req, res) {
 function create(req, res) {//
   //TODO: validate that user is logged in
   req.body.creator = req.user._id;
+  console.log(req.body);
   Event.create(req.body)
   .then(event => {
     res.status(201).json(event);

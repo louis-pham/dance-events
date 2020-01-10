@@ -1,5 +1,4 @@
 const Event = require("../models/event");
-
 module.exports = {
   index,
   show,
@@ -11,6 +10,7 @@ module.exports = {
 function index(req, res) {
   res.render('events/index', {
     title: 'All Events',
+    loadCssFile: "/stylesheets/events.css",
     loadJsFile: "/javascripts/events.js",
     loggedInUser: req.user,
   });
@@ -28,6 +28,7 @@ function show(req, res) {
 function addEvent(req, res) {
   res.render("events/new", {
     title: "Add Event",
+    loadCssFile: "/stylesheets/new.css",
     loadJsFile: "/javascripts/new.js",
     loggedInUser: req.user,
   });

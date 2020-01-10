@@ -1,0 +1,25 @@
+.inline-header {
+  display: inline-block;
+}
+
+.events-container {
+  font-size: 0.9em;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-bottom: 10px;
+}
+
+.event {
+  min-height: 125px;
+}
+
+@media screen and (min-width: 700px) {
+  .events-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .events-container {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+  }
+}

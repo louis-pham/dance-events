@@ -1,11 +1,17 @@
 var express = require('express');
 var router = express.Router();
+const User = require("../models/user");
 const passport = require("passport");
 const middleware = require("../middleware/middleware.js");
+const moment = require("moment");
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Next on Deck', loadCssFile: "/stylesheets/index.css", loadJsFile: "/javascripts/index.js", loggedInUser: req.user });
+});
+
+router.get("/about", function(req, res) {
+  res.render("about", { title: "About Us", loggedInUser: req.user });
 });
 
 router.get("/login", function(req, res) {
@@ -13,7 +19,9 @@ router.get("/login", function(req, res) {
 });
 
 router.get("/profile", middleware.isLoggedIn, function(req, res) {
-  res.render("profile", { title: "My Profile", loggedInUser: req.user })
+  User.findById(req.user).populate("eventsCreated").populate("eventsSignedUp").then(user => {
+    res.render("profile", { title: "My Profile", loadCssFile: "/stylesheets/profile.css", loggedInUser: user, moment });
+  });
 });
 
 // Google OAuth login route

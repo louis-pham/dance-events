@@ -1,7 +1,51 @@
 <%- include partials/header.ejs %>
-  <section class="login center">
+  <section class="profile">
     <h1>My Profile</h1>
-    <pre><%= loggedInUser %></pre>
+    <div class="">
+      <h2 class="inline-header">User Name</h2>
+      <span id="user-name"><%= loggedInUser.name %></span>
+    </div>
+    <div class="">
+      <h2 class="inline-header">User Handle</h2>
+      <span id="user-handle"><%= loggedInUser.handle || "Not yet chosen" %></span>
+    </div>
+    <h2>Events Signed Up</h2>
+    <span id="user-events-signed-up"></span>
+    <% if (loggedInUser.eventsSignedUp.length === 0) { %>
+      <span>None</span>
+    <% }; %>
+    <div class="events-container">
+      <% loggedInUser.eventsSignedUp.forEach(event => { %>
+        <a class="event-link" href="/events/show?id=<%= event._id %>">
+          <div class="event" style="background: url(<%= event.image || "/images/tribe-related-events-placeholder.png" %>) center calc(50% - 100px) no-repeat;">
+          <div class="event-details">
+            <h2 class="event__title"><%= event.name %></h2>
+            <h3 class="event__datetime"><%= moment(event.time).format("LLL") %></h3>
+            <h3 class="event__price">$<%= event.price.toFixed(2) %></h3>
+          </div>
+        </div></a>
+      <% }); %>
+    </div>
+    <h2>Events Created</h2>
+    <% if (loggedInUser.eventsCreated.length === 0) { %>
+      <span>None</span>
+    <% }; %>
+    <div class="events-container">
+      <% loggedInUser.eventsCreated.forEach(event => { %>
+        <a class="event-link" href="/events/show?id=<%= event._id %>">
+          <div class="event" style="background: url(<%= event.image || "/images/tribe-related-events-placeholder.png" %>) center calc(50% - 100px) no-repeat;">
+          <div class="event-details">
+            <h2 class="event__title"><%= event.name %></h2>
+            <h3 class="event__datetime"><%= moment(event.time).format("LLL") %></h3>
+            <h3 class="event__price">$<%= event.price.toFixed(2) %></h3>
+          </div>
+        </div></a>
+      <% }); %>
+    </div>
+    <a class="btn btn-edit" href="/users/<%= loggedInUser._id %>/edit">Edit Account Information</a>
+    <form action="/users/<%= loggedInUser._id %>?_method=DELETE" method="post">
+      <button class="btn btn-delete" type="submit">Delete Account</button>
+    </form>
     <a class="btn" href="/logout">Logout</a>
   </section>
 <%- include partials/footer.ejs %>

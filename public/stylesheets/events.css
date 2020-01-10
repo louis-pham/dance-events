@@ -1,0 +1,21 @@
+@media screen and (min-width: 700px) {
+  .events-container {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .event {
+    min-height: 300px;
+    font-size: 0.8em;
+  }
+}
+
+@media screen and (min-width: 1000px) {
+  .events-container {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  .event {
+    min-height: 350px;
+    font-size: 0.9em;
+  }
+}

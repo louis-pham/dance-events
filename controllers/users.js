@@ -1,10 +1,13 @@
 const Event = require("../models/event");
 const User = require("../models/user");
+const moment = require("moment");
 
 module.exports = {
   index,
   show,
+  edit,
   update,
+  delete: deleteUser,
   addToEvent
 };
 
@@ -21,13 +24,35 @@ function show(req, res) {
     res.render("users/show",{
       title: `User - ${user.name}`,
       loggedInUser: req.user,
+      user,
+      moment
+    });
+  });
+}
+
+function edit(req, res) {
+  User.findById(req.params.id)
+  .then(user => {
+    res.render("users/edit", {
+      title: `Edit User - ${user.name}`,
+      loggedInUser: req.user,
       user
     });
   });
 }
 
 function update(req, res) {
+  User.updateOne({ _id: req.params.id }, req.body)
+  .then(user => {
+    res.redirect(`/profile`);
+  });
 
+}
+
+function deleteUser(req, res) {
+  User.deleteOne({ _id: req.params.id }).then(next => {
+    res.redirect('/logout');
+  });
 }
 
 function addToEvent(req, res) {

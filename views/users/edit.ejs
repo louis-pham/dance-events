@@ -1,0 +1,12 @@
+<%- include ../partials/header.ejs %>
+  <section class="edit-profile">
+    <h1>Edit User</h1>
+    <form action="/users/<%= loggedInUser._id %>?_method=PUT" method="post">
+      <label><b>User Name</b></label>
+      <span><%= user.name %></span>
+      <label for="handle"><b>User Handle</b></label>
+      <input type="text" name="handle" value="<%= user.handle || "" %>">
+      <button class="btn btn-delete" type="submit">Apply changes</button>
+    </form>
+  </section>
+<%- include ../partials/footer.ejs %>

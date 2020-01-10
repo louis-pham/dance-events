@@ -10,6 +10,7 @@
       location: formElem.querySelector("#event-location").value,
       price: formElem.querySelector("#event-price").value,
       description: formElem.querySelector("#event-description").value,
+      image: formElem.querySelector("#event-image").value,
     })
     .then(function(response) {
       console.log(response);
